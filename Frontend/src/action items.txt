@@ -1,0 +1,6 @@
+Validate the input bar as to the user should be allowed to not enter oper
+Add comments about the concepts implemented
+1. Design the client server interaction
+Separate the operator buttons
+Use array range to insert the buttons in the button component
+
