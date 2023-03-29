@@ -32,7 +32,7 @@ function Results() {
       </div>
 
       <ul>
-        {/* USE OF LISTS AND KEYS IN TO DISPLAY THE ARRAY ELEMENTS */}
+        {/* USE OF LISTS AND KEYS TO DISPLAY THE ARRAY ELEMENTS */}
         {/* PASSING THE DATA USING QUERY PARAMETER */}
         {records.map((record, index) => (
           <li key={index}>
