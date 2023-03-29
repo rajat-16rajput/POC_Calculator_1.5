@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Display from "./Display";
 import Button from "./Button";
-import axios from "axios";
-export default function ButtonContainer() {
+
+//FUNCTIONAL COMPONENTS HAVE BEEN USED IN THE PROJECT
+export default function ButtonContainer(input_num) {
+  //USE OF REACT'S useState HOOK
   let [displayString, setdisplayString] = useState("");
   const navigate = useNavigate();
+
+  const myKeyValues = window.location.search;
+  const urlParams = new URLSearchParams(myKeyValues);
+  const param1 = urlParams.get("last_calculation");
+  //console.log(param1);
+
   const updateNumber = (input) => {
     setdisplayString(displayString + input);
-    // alert("inside updateNumber" + input);
-    // Display({ displayString });
   };
 
   const clearString = () => {
@@ -18,19 +24,17 @@ export default function ButtonContainer() {
 
   const calculate = () => {
     let num = eval(displayString);
-    axios
-      .post(
-        "http://localhost:5000/calculations",
-        { displayString } + " " + { num }
-      )
-      .then((res) => {
-        console.log(res);
-      });
     setdisplayString(num);
+  };
+
+  const getHistory = () => {
+    setdisplayString(param1);
+    console.log(param1);
   };
 
   return (
     <div>
+      {/* REUSING THE DISPLAY AND BUTTON COMPONENT  */}
       <div>
         <Display value={displayString} />
       </div>
@@ -56,9 +60,13 @@ export default function ButtonContainer() {
         <Button btnValue="=" callBackFunc={calculate} />
         <Button btnValue="/" callBackFunc={updateNumber} />
         <br />
+
+        {/* ROUTING TO THE RESULTS PAGE AFTER THE CLICK EVENT */}
         <button onClick={() => navigate("calculations/results")}>
           View History
         </button>
+        <br />
+        <Button btnValue="Previous Calculation" callBackFunc={getHistory} />
       </div>
     </div>
   );

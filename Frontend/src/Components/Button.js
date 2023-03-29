@@ -1,5 +1,6 @@
 import React from "react";
 
+//PASSING props AMONG COMPONENTS
 const Button = (props) => {
   let onClickHandler = () => {
     props.callBackFunc(props.btnValue);
